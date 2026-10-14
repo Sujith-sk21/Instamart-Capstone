@@ -1,0 +1,2 @@
+PCA explained variance ratio: 0.644, 0.210
+Total variance explained: 0.854

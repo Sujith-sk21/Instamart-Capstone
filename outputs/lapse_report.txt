@@ -1,0 +1,10 @@
+Cohort size: 1156
+Lapsed count: 443
+Training rows: 924
+Test rows: 232
+Logistic best parameters: {'classifier__C': 10}
+Logistic CV F1: 0.6310
+Random forest best parameters: {'classifier__max_depth': 3, 'classifier__min_samples_leaf': 5}
+Random forest CV F1: 0.6680
+Reloaded predictions identical: True
+Limitation: the Premium flag is a post-hoc whole-window label, so the retention list is illustrative and not a leakage-free evaluation.
