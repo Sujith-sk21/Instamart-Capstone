@@ -1,0 +1,19 @@
+{
+  "ticket_count": 164,
+  "input_file": "data\\raw\\tickets.csv",
+  "text_column": "text",
+  "label_column": "true_category",
+  "remaining_emails": 0,
+  "remaining_phones": 0,
+  "remaining_order_ids": 0,
+  "zero_shot_methods": {
+    "json": 143,
+    "keyword": 12,
+    "keyword_fallback": 9
+  },
+  "few_shot_methods": {
+    "json": 143,
+    "keyword": 12,
+    "keyword_fallback": 9
+  }
+}
