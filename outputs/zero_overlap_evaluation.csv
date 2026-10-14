@@ -1,0 +1,8 @@
+question,expected_source,normal_overlap_sources,zero_overlap_sources,normal_overlap_match,zero_overlap_match,zero_overlap_no_match
+What is the refund policy for late delivery?,refund_policy.txt,refund_policy.txt,delivery_policy.txt;refund_policy.txt,True,True,False
+What happens if an order is cancelled?,refund_policy.txt,payment_policy.txt;refund_policy.txt,payment_policy.txt;refund_policy.txt,True,True,False
+How do I request a refund?,refund_policy.txt,refund_policy.txt,refund_policy.txt,True,True,False
+How is customer data protected?,privacy_policy.txt,delivery_policy.txt;escalation_policy.txt;payment_policy.txt,delivery_policy.txt;payment_policy.txt;privacy_policy.txt,False,True,False
+What payment methods are accepted?,payment_policy.txt,payment_policy.txt;privacy_policy.txt;refund_policy.txt,payment_policy.txt;privacy_policy.txt;refund_policy.txt,True,True,False
+What is the delivery policy?,delivery_policy.txt,delivery_policy.txt;payment_policy.txt;privacy_policy.txt,delivery_policy.txt;payment_policy.txt;privacy_policy.txt,True,True,False
+What is the policy for lunar deliveries?,NONE_UNSUPPORTED,escalation_policy.txt;payment_policy.txt;refund_policy.txt,escalation_policy.txt;payment_policy.txt;refund_policy.txt,False,False,True

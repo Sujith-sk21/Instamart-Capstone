@@ -1,11 +1,25 @@
+# Python virtual environments
 .venv/
 .venv-1/
+venv/
+env/
+
+# Python cache and compiled files
 __pycache__/
 *.py[cod]
-.env
+*$py.class
 
-# Part D temporary agent execution files
-outputs/checkpoint_*.json
-outputs/agent_runs.jsonl
-outputs/agent_tool_log.jsonl
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary test output
 outputs/test_refund_ledger.jsonl

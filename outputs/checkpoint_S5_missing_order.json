@@ -1,0 +1,49 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "AGENT. Process refunds safely. Only completed orders can be refunded. Orders delivered in more than 45 minutes receive a full refund. Refunds above INR 1000 must be escalated to a human lead. Use tools for order facts and calculations."
+    },
+    {
+      "role": "user",
+      "content": "Please refund order ORD-999999."
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_1",
+          "name": "get_order",
+          "arguments": "{\"order_id\": \"ORD-999999\"}"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_1",
+      "name": "get_order",
+      "content": "{\"error\": \"order_not_found\"}"
+    }
+  ],
+  "tool_results": [
+    {
+      "error": "order_not_found"
+    }
+  ],
+  "executed_tools": [
+    {
+      "name": "get_order",
+      "arguments": {
+        "order_id": "ORD-999999"
+      },
+      "result": {
+        "error": "order_not_found"
+      }
+    }
+  ],
+  "done": true,
+  "final_answer": "NOT_FOUND: no such order.",
+  "total_tokens": 143,
+  "elapsed_seconds": 0.0033
+}

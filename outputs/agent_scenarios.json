@@ -1,46 +1,102 @@
-[
-  {
-    "scenario": "S1_auto_refund",
-    "order_id": "ORD-100048",
-    "expected_prefix": "REFUND:",
-    "actual_answer": "REFUND: INR 128.25 issued.",
-    "tools_executed": 4,
-    "status": "PASS"
+{
+  "scenarios": [
+    {
+      "scenario_id": "S1_auto_refund",
+      "order_id": "ORD-100048",
+      "expected": "REFUND:",
+      "actual": "REFUND: INR 128.25 issued.",
+      "expected_refund_amount_inr": 128.25,
+      "actual_refund_amount_inr": 128.25,
+      "refund_amount_inr": 128.25,
+      "tools_executed": 4,
+      "tokens_used": 1063,
+      "status": "PASS"
+    },
+    {
+      "scenario_id": "S2_human_escalation",
+      "order_id": "ORD-100145",
+      "expected": "ESCALATE:",
+      "actual": "ESCALATE: refund above INR 1000 sent to a human lead.",
+      "expected_refund_amount_inr": 1999.0,
+      "actual_refund_amount_inr": null,
+      "refund_amount_inr": 1999.0,
+      "tools_executed": 4,
+      "tokens_used": 1072,
+      "status": "PASS"
+    },
+    {
+      "scenario_id": "S3_within_45_minutes",
+      "order_id": "ORD-100001",
+      "expected": "DENIED:",
+      "actual": "DENIED: delivery was within 45 minutes.",
+      "expected_refund_amount_inr": null,
+      "actual_refund_amount_inr": null,
+      "refund_amount_inr": null,
+      "tools_executed": 3,
+      "tokens_used": 743,
+      "status": "PASS"
+    },
+    {
+      "scenario_id": "S4_cancelled_order",
+      "order_id": "ORD-100020",
+      "expected": "DENIED:",
+      "actual": "DENIED: only completed orders can be refunded.",
+      "expected_refund_amount_inr": null,
+      "actual_refund_amount_inr": null,
+      "refund_amount_inr": null,
+      "tools_executed": 2,
+      "tokens_used": 446,
+      "status": "PASS"
+    },
+    {
+      "scenario_id": "S5_missing_order",
+      "expected": "NOT_FOUND:",
+      "actual": "NOT_FOUND: no such order.",
+      "refund_amount_inr": null,
+      "tools_executed": 1,
+      "status": "PASS"
+    },
+    {
+      "scenario_id": "S6_max_iterations",
+      "expected": "FALLBACK_MAX_ITERATIONS",
+      "actual": "FALLBACK_MAX_ITERATIONS",
+      "refund_amount_inr": null,
+      "tools_executed": 3,
+      "status": "PASS"
+    },
+    {
+      "scenario_id": "S7_max_iterations",
+      "expected": "FALLBACK_MAX_ITERATIONS",
+      "actual": "FALLBACK_MAX_ITERATIONS",
+      "refund_amount_inr": null,
+      "tools_executed": 6,
+      "tokens_used": 3240,
+      "status": "PASS"
+    }
+  ],
+  "passed_scenarios": 7,
+  "total_scenarios": 7,
+  "token_limit_demo": {
+    "status": "FALLBACK_TOKEN_LIMIT",
+    "tokens_used": 67
   },
-  {
-    "scenario": "S2_human_escalation",
-    "order_id": "ORD-100145",
-    "expected_prefix": "ESCALATE:",
-    "actual_answer": "ESCALATE: refund above INR 1000 sent to a human lead.",
-    "tools_executed": 4,
-    "status": "PASS"
+  "timeout_demo": {
+    "status": "FALLBACK_TIMEOUT",
+    "tokens_used": 0
   },
-  {
-    "scenario": "S3_within_45_minutes",
-    "order_id": "ORD-100001",
-    "expected_prefix": "DENIED:",
-    "actual_answer": "DENIED: delivery was within 45 minutes.",
-    "tools_executed": 3,
-    "status": "PASS"
+  "crash_resume_demo": {
+    "status": "PASS",
+    "tools_before_crash": 2,
+    "tools_after_resume": 4,
+    "total_tools": 4,
+    "final_answer": "REFUND: INR 128.25 issued.",
+    "expected_refund_amount_inr": 128.25
   },
-  {
-    "scenario": "S4_cancelled_order",
-    "order_id": "ORD-100020",
-    "expected_prefix": "DENIED:",
-    "actual_answer": "DENIED: only completed orders can be refunded.",
-    "tools_executed": 2,
-    "status": "PASS"
-  },
-  {
-    "scenario": "S5_missing_order",
-    "actual_answer": "NOT_FOUND: no such order.",
-    "tools_executed": 1,
-    "status": "PASS"
-  },
-  {
-    "scenario": "S6_max_iterations",
-    "actual_answer": "FALLBACK_MAX_ITERATIONS",
-    "tools_executed": 3,
-    "status": "PASS"
+  "zero_overlap": {
+    "questions_tested": 7,
+    "no_match_questions": [
+      "What is the policy for lunar deliveries?"
+    ],
+    "results_file": "outputs/zero_overlap_evaluation.csv"
   }
-]
+}

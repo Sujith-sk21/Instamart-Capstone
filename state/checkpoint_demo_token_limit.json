@@ -1,0 +1,27 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "AGENT. Process refunds safely. Only completed orders can be refunded. Orders delivered in more than 45 minutes receive a full refund. Refunds above INR 1000 must be escalated to a human lead. Use tools for order facts and calculations."
+    },
+    {
+      "role": "user",
+      "content": "Please refund order ORD-999999."
+    }
+  ],
+  "tool_results": [],
+  "executed_tools": [],
+  "done": true,
+  "final_answer": "FALLBACK_TOKEN_LIMIT",
+  "total_tokens": 67,
+  "llm_calls": 1,
+  "steps": [
+    {
+      "step": "fallback",
+      "status": "FALLBACK_TOKEN_LIMIT",
+      "tokens_used": 67
+    }
+  ],
+  "elapsed_seconds": 0.0002,
+  "executed_tool_count": 0
+}

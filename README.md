@@ -1,43 +1,34 @@
-# Instamart Customer Intelligence & Support Copilot
+Instamart Customer Intelligence & Support Copilot
 
-## Overview
+Overview
 
-This capstone project builds a data-driven customer intelligence and support system using synthetic Instamart data. It combines data cleaning, exploratory analysis, customer segmentation, lapse prediction, support ticket triage, policy retrieval, and a bounded refund-support agent.
+This capstone project builds a data-driven customer intelligence and support system using synthetic Instamart data. It covers data cleaning, exploratory data analysis, customer segmentation, lapse prediction, support ticket triage, policy retrieval, and a bounded refund-support agent.
 
-The project uses Python, pandas, scikit-learn, SQLite, TF-IDF retrieval, and the supplied offline mock language model.
+Technology stack: Python, pandas, scikit-learn, SQLite, TF-IDF retrieval, and the supplied offline mock language model.
 
-## Reproduce
+All data and transactions are synthetic or simulated. No real refunds or external LLM API calls are performed.
 
-### Requirements
+Reproduce
 
-- Python 3.14 or a compatible Python version
-- Git
-- The supplied `generate_data.py` and `mock_llm.py` files
+Requirements
 
-### Setup
+Python 3.14 or a compatible Python version
 
-Create and activate a virtual environment:
+Git
 
-```powershell
+The supplied generate_data.py and mock_llm.py files
+
+Setup
+
+Run these commands from the project root in PowerShell:
+
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-```
-
-Install dependencies:
-
-```powershell
 python -m pip install -r requirements.txt
-```
-
-Generate the synthetic data:
-
-```powershell
 python generate_data.py
-```
 
-Run the project modules:
+Run the project
 
-```powershell
 python src\clean_data.py
 python src\build_database.py
 python src\validate_data.py
@@ -47,112 +38,211 @@ python src\lapse_prediction.py
 python src\ticket_triage.py
 python src\policy_rag.py
 python src\test_policy_rag.py
-```
 
-Run commands from the project root directory. Some later modules depend on the outputs produced by earlier modules.
+Run the modules from the project root and in order, because later stages depend on earlier outputs. The Part D script generates policy evaluation results, agent scenario results, execution logs, refund ledger entries, and checkpoints.
 
-## Part A — Data Foundation and EDA
+Part A — Data Foundation and EDA
 
-Part A prepares the synthetic customer and order data for analysis.
-
-Key components:
-
-- Data cleaning and validation scripts
-- A SQLite database containing customer, product, and order data
-- SQL queries in `sql/queries.sql`
-- Exploratory analysis reports and plots
-
-Key outputs include:
-
-- `data/clean/customers_clean.csv`
-- `data/clean/orders_clean.csv`
-- `data/instamart.db`
-- `outputs/validation.txt`
-- `outputs/eda_report.txt`
-
-The validation run reported `ALL CHECKPOINTS PASSED`.
-
-The EDA report analysed completed orders with available order amounts. It reported a mean order amount of INR 269.92 and a median of INR 135.00.
-
-## Part B — Customer Segmentation and Lapse Prediction
-
-Part B builds customer-level recency, frequency, and monetary features, applies K-means clustering, and trains models to predict customer lapse.
+Part A cleans and validates the synthetic customer and order data, builds a SQLite database, and performs exploratory analysis.
 
 Key components:
 
-- RFM feature engineering
-- Clustering evaluation and customer segment profiles
-- Lapse prediction using logistic regression and random forest
-- A retention list for selected customers
-- Saved model and evaluation reports
+Data cleaning and validation
 
-Key outputs include:
+SQLite database and SQL queries in sql/queries.sql
 
-- `outputs/customer_segments.csv`
-- `outputs/clustering_evaluation.csv`
-- `outputs/segment_profiles.csv`
-- `outputs/segmentation_report.txt`
-- `outputs/lapse_report.txt`
-- `outputs/retention_list.csv`
-- `outputs/lapse_model.joblib`
+Exploratory analysis reports and plots
 
-The current lapse evaluation selected a random forest model and reported a test F1 score of approximately 0.689. The retention list is intended to support follow-up prioritisation.
+Key outputs:
 
-## Part C — Support Ticket Triage
+data/clean/customers_clean.csv
 
-Part C classifies synthetic support tickets into support categories using the supplied offline mock model and a keyword-based fallback.
+data/clean/orders_clean.csv
+
+data/instamart.db
+
+outputs/validation.txt
+
+outputs/eda_report.txt
+
+The recorded validation run reported ALL CHECKPOINTS PASSED. The EDA report analysed completed orders with available order amounts and reported a mean of INR 269.92 and a median of INR 135.00.
+
+Part B — Customer Segmentation and Lapse Prediction
+
+Part B engineers recency, frequency, and monetary (RFM) features, applies K-means clustering, and evaluates models for predicting customer lapse.
+
+Key outputs:
+
+outputs/customer_segments.csv
+
+outputs/clustering_evaluation.csv
+
+outputs/segment_profiles.csv
+
+outputs/segmentation_report.txt
+
+outputs/lapse_report.txt
+
+outputs/retention_list.csv
+
+outputs/lapse_model.joblib
+
+The recorded evaluation selected a random forest and reported a test F1 score of approximately 0.689. The retention list supports prioritisation of customers for follow-up. These metrics apply to the synthetic dataset and its evaluation setup.
+
+Part C — Support Ticket Triage
+
+Part C classifies synthetic support tickets using the supplied offline mock model and a keyword-based fallback.
 
 Key components:
 
-- Input text preparation and personal-data masking
-- Zero-shot and few-shot classification runs
-- Output validation and fallback handling
-- Per-ticket triage results and summary metrics
+Input text preparation and personal-data masking
 
-Key outputs include:
+Zero-shot and few-shot classification
 
-- `outputs/triage_results.csv`
-- `outputs/triage_report.json`
+Output validation and fallback handling
 
-The current run reported 85.625% accuracy for zero-shot classification and 100% for few-shot classification on the labelled tickets included in the evaluation. These results are specific to the supplied synthetic dataset and mock model.
+Per-ticket results and summary metrics
 
-## Part D — Policy RAG and Refund-Support Agent
+Key outputs:
 
-Part D retrieves policy text and demonstrates a bounded agent for refund support.
+outputs/triage_results.csv
+
+outputs/triage_report.json
+
+The recorded run reported 85.625% zero-shot accuracy and 100% few-shot accuracy on the labelled tickets included in the evaluation. These results are specific to the synthetic dataset and mock model and should not be interpreted as real-world performance guarantees.
+
+Part D — Policy RAG and Refund-Support Agent
+
+Part D retrieves policy evidence and demonstrates a bounded agent for refund support.
 
 Key components:
 
-- Loading and chunking five policy documents
-- TF-IDF and cosine-similarity retrieval
-- Policy answers with source references
-- Order lookup and refund calculation tools
-- Refund validation and human escalation
-- Iteration, token, and time limits
-- JSONL execution records and agent checkpoints
+Five policy documents, chunking, and TF-IDF/cosine-similarity retrieval
 
-Key outputs include:
+Policy answers with source references
 
-- `outputs/policy_answer.json`
-- `outputs/policy_evaluation.csv`
-- `outputs/agent_scenarios.json`
-- `outputs/refund_ledger.jsonl`
+Order lookup and refund calculation tools
 
-The scenario test run passed all six tested scenarios: automatic refund, human escalation, ineligible delivery time, cancelled order, missing order, and maximum iteration limit.
+Refund eligibility checks and human escalation
 
-The demonstration issued a refund of INR 128.25 for a synthetic eligible order. This is a local simulation, not a real payment transaction.
+Iteration, token, and timeout limits
 
-## Limitations and Next Steps
+JSONL execution records, tool logs, and checkpoints
 
-- All customer, order, product, and support data are synthetic.
-- The supplied mock language model is an offline simulation and does not represent production LLM performance.
-- Evaluation metrics depend on the generated dataset, split, and test cases; they should not be interpreted as guaranteed real-world performance.
-- TF-IDF retrieval is a lightweight baseline and may miss relevant policy passages or return incomplete evidence.
-- Refund actions are simulated locally. A production implementation would require authenticated services, secure payment integration, idempotency, audit controls, and human approval workflows.
-- Further work should improve evaluation coverage, handle ambiguous or missing ticket text explicitly, validate all policy-answer scenarios, and add monitoring for model and data quality.
+Crash/resume demonstration and zero-overlap evaluation
 
-## Repository Structure
+Acceptance scenario results
 
-```text
+The latest recorded run passed all seven scenarios:
+
+Scenario
+
+Expected outcome
+
+Result
+
+S1 — Automatic refund
+
+Refund issued
+
+PASS — INR 128.25
+
+S2 — Human escalation
+
+Escalation for refund above INR 1,000
+
+PASS — INR 1,999 requires approval
+
+S3 — Delivery within 45 minutes
+
+Refund denied
+
+PASS
+
+S4 — Cancelled order
+
+Refund denied
+
+PASS
+
+S5 — Missing order
+
+Order not found
+
+PASS
+
+S6 — Bounded iteration test
+
+FALLBACK_MAX_ITERATIONS
+
+PASS
+
+S7 — Default-limit loop test
+
+FALLBACK_MAX_ITERATIONS
+
+PASS
+
+Fallback and recovery demonstrations
+
+Demonstration
+
+Recorded outcome
+
+Token limit
+
+FALLBACK_TOKEN_LIMIT
+
+Timeout
+
+FALLBACK_TIMEOUT
+
+Crash/resume
+
+PASS — exactly 4 total tool executions
+
+Zero-overlap evaluation
+
+7 questions tested; unsupported lunar-delivery question identified as a no-match
+
+The crash/resume demonstration recorded two tool executions before the simulated crash and four total after resumption. The final answer was REFUND: INR 128.25 issued.
+
+Key outputs
+
+outputs/policy_answer.json
+
+outputs/policy_evaluation.csv
+
+outputs/zero_overlap_evaluation.csv
+
+outputs/agent_scenarios.json
+
+outputs/agent_runs.jsonl
+
+outputs/agent_tool_log.jsonl
+
+outputs/refund_ledger.jsonl
+
+state/ — agent checkpoints
+
+The refund ledger records an issued refund of INR 128.25 and an escalation requiring human approval for INR 1,999. These are simulated local actions, not real payment transactions.
+
+Limitations and Next Steps
+
+All customer, order, product, and support data are synthetic.
+
+The supplied mock language model is an offline simulation and does not represent production LLM performance.
+
+Evaluation metrics depend on the generated data, evaluation split, and test cases.
+
+TF-IDF retrieval is a lightweight baseline and may miss relevant passages or return incomplete evidence.
+
+Refund actions are simulated locally. A production system would need authentication, secure payment integration, idempotency, audit controls, and human approval workflows.
+
+Future improvements include broader evaluation coverage, explicit handling of missing ticket text, stronger retrieval evaluation, and monitoring of model and data quality.
+
+Repository Structure
+
 Instamart-Capstone/
 ├── data/
 │   ├── clean/
@@ -162,11 +252,9 @@ Instamart-Capstone/
 ├── sql/
 │   └── queries.sql
 ├── src/
+├── state/
 ├── generate_data.py
 ├── mock_llm.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-```
-
-All reported monetary amounts use INR. Outputs are generated locally from the supplied scripts and synthetic data.
