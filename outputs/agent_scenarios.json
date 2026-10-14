@@ -1,0 +1,46 @@
+[
+  {
+    "scenario": "S1_auto_refund",
+    "order_id": "ORD-100048",
+    "expected_prefix": "REFUND:",
+    "actual_answer": "REFUND: INR 128.25 issued.",
+    "tools_executed": 4,
+    "status": "PASS"
+  },
+  {
+    "scenario": "S2_human_escalation",
+    "order_id": "ORD-100145",
+    "expected_prefix": "ESCALATE:",
+    "actual_answer": "ESCALATE: refund above INR 1000 sent to a human lead.",
+    "tools_executed": 4,
+    "status": "PASS"
+  },
+  {
+    "scenario": "S3_within_45_minutes",
+    "order_id": "ORD-100001",
+    "expected_prefix": "DENIED:",
+    "actual_answer": "DENIED: delivery was within 45 minutes.",
+    "tools_executed": 3,
+    "status": "PASS"
+  },
+  {
+    "scenario": "S4_cancelled_order",
+    "order_id": "ORD-100020",
+    "expected_prefix": "DENIED:",
+    "actual_answer": "DENIED: only completed orders can be refunded.",
+    "tools_executed": 2,
+    "status": "PASS"
+  },
+  {
+    "scenario": "S5_missing_order",
+    "actual_answer": "NOT_FOUND: no such order.",
+    "tools_executed": 1,
+    "status": "PASS"
+  },
+  {
+    "scenario": "S6_max_iterations",
+    "actual_answer": "FALLBACK_MAX_ITERATIONS",
+    "tools_executed": 3,
+    "status": "PASS"
+  }
+]

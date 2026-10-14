@@ -1,6 +1,11 @@
-
 .venv/
 .venv-1/
 __pycache__/
 *.py[cod]
 .env
+
+# Part D temporary agent execution files
+outputs/checkpoint_*.json
+outputs/agent_runs.jsonl
+outputs/agent_tool_log.jsonl
+outputs/test_refund_ledger.jsonl

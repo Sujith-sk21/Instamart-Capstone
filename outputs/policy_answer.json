@@ -1,0 +1,27 @@
+{
+  "question": "What is the refund policy for late delivery?",
+  "answer": "If a completed order is delivered in more than 45 minutes, the customer receives a full refund of the order amount. If a completed order is delivered in 45 minutes or less, no late-delivery refund is paid. Refunds up to INR 1000 are approved automatically by the support system. A refund above INR 1000 must be approved by a human support lead before money is returned. Approved refunds are credited to the original payment method within 5 working days. A refund request must be raised within 7 days of the delivery date.",
+  "sources": [
+    "refund_policy.txt"
+  ],
+  "retrieved": [
+    {
+      "source": "refund_policy.txt",
+      "text": "order is delivered in more than 45 minutes, the customer receives a full refund of the order amount. If a completed order is delivered in 45 minutes or less, no late-delivery refund is paid. Refunds up to INR 1000 are",
+      "start_word": 30,
+      "score": 0.1972270311947977
+    },
+    {
+      "source": "refund_policy.txt",
+      "text": "Refund Policy. A refund can be requested only for orders whose status is completed. Orders with status cancelled were never charged, so no refund applies to them. If a completed order is delivered in more than 45 minutes, the customer",
+      "start_word": 0,
+      "score": 0.1785440996379808
+    },
+    {
+      "source": "refund_policy.txt",
+      "text": "late-delivery refund is paid. Refunds up to INR 1000 are approved automatically by the support system. A refund above INR 1000 must be approved by a human support lead before money is returned. Approved refunds are credited to the original",
+      "start_word": 60,
+      "score": 0.17541649106818757
+    }
+  ]
+}
