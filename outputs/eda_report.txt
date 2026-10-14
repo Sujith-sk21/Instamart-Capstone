@@ -1,0 +1,14 @@
+EXPLORATORY DATA ANALYSIS
+===================================
+Completed orders: 11110
+Valid order amounts: 10998
+Mean: INR 269.92
+Median: INR 135.00
+Standard deviation: INR 432.42
+Skewness: 4.6186
+Q1: INR 64.80
+Q3: INR 297.00
+Lower fence: INR -283.50
+Upper fence: INR 645.30
+Outlier count: 889
+Amount/discount correlation: -0.0955
